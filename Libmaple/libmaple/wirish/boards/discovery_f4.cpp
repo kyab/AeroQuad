@@ -167,14 +167,18 @@ extern const stm32_pin_info PIN_MAP[BOARD_NR_GPIO_PINS] = {
     {GPIOE,   NULL, NULL, 15, 0, ADCx}  /* D79/PE15 */
 };
 
+//can be used to analogWrite
 extern const uint8 boardPWMPins[BOARD_NR_PWM_PINS] __FLASH__ = {
     0, 1, 2, 3, 15, 16, 17, 19, 20, 21, 38, 39, 49, 41, 60, 61, 62, 63, 73, 75, 77, 78
 };
 
+//ca used to analogRead
 extern const uint8 boardADCPins[BOARD_NR_ADC_PINS] __FLASH__ = {
     0, 1, 2, 3, 4, 5, 6, 7, 16, 17, 32, 33, 34, 35, 36, 37
 };
 
+
+//pins can not used anyway
 extern const uint8 boardUsedPins[BOARD_NR_USED_PINS] __FLASH__ = {
     BOARD_LED_PIN, BOARD_BUTTON_PIN, BOARD_JTMS_SWDIO_PIN,
     BOARD_JTCK_SWCLK_PIN, BOARD_JTDI_PIN, BOARD_JTDO_PIN, BOARD_NJTRST_PIN,

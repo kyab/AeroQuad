@@ -45,7 +45,7 @@ BUILDTYPE ?= STM32
 BOARD ?= aeroquad32
 #BOARD ?= aeroquad32f1
 #BOARD ?= aeroquad32mini
-#BOARD	= discovery_f4
+BOARD	= discovery_f4
 #BOARD ?= freeflight
 
 V=1
@@ -72,6 +72,8 @@ ifeq ($(BUILDTYPE), STM32)
 	MEMORY_TARGET ?= flash
 	MCU_OPTIONS = -mcpu=cortex-m3 -mthumb 
 	#-fshort-double
+
+
 	
 	# Guess the MCU based on the BOARD (can be overridden )
 	ifeq ($(BOARD), maple)
@@ -762,10 +764,11 @@ ifeq ($(BUILDTYPE), XMEGA)
 $(shell mkdir -p $(OBJDIR)/arduinoXMega/Libraries 2>/dev/null)
 endif
 ifeq ($(BUILDTYPE), STM32)
+$(info ------------------------------------)
 $(shell mkdir -p $(OBJDIR)/$(SRCDIRAQ32) $(OBJDIR)/$(MCDIR) 2>/dev/null)
 endif
 #$(shell mkdir -p $(OBJDIR) $(OBJDIR)/$(SRCDIR) $(OBJDIR)/$(SRCDIRAQ32) $(OBJDIR)/$(MCDIR) $(OBJDIR)/arduinoXMega $(OBJDIR)/arduinoXMega/Libraries $(OBJDIR)/$(LIBDIR)  $(OBJDIR)/$(LIBDIR)/AQ_Gps $(OBJDIR)/$(LIBDIR)/AQ_I2C $(OBJDIR)/$(LIBDIR)/AQ_Math 2>/dev/null)
-$(shell mkdir -p $(OBJDIR) $(OBJDIR)/$(SRCDIR) $(OBJDIR)/$(LIBDIR)  $(OBJDIR)/$(LIBDIR)/AQ_Gps $(OBJDIR)/$(LIBDIR)/AQ_I2C $(OBJDIR)/$(LIBDIR)/AQ_Math 2>/dev/null)
+#$(shell mkdir -p $(OBJDIR) $(OBJDIR)/$(SRCDIR) $(OBJDIR)/$(LIBDIR)  $(OBJDIR)/$(LIBDIR)/AQ_Gps $(OBJDIR)/$(LIBDIR)/AQ_I2C $(OBJDIR)/$(LIBDIR)/AQ_Math 2>/dev/null)
 
 # Include the dependency files.
 -include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)

@@ -121,6 +121,8 @@ typedef struct tskTaskControlBlock
 		unsigned long ulRunTimeCounter;		/*< Used for calculating how much CPU time each task is utilising. */
 	#endif
 
+	struct _reent reent;	//ky
+
 } tskTCB;
 
 
@@ -1725,6 +1727,8 @@ void vTaskSwitchContext( void )
 		same priority get an equal share of the processor time. */
 		listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopReadyPriority ] ) );
 	
+		_impure_ptr = &(pxCurrentTCB->reent);
+
 		traceTASK_SWITCHED_IN();
 		vWriteTraceToBuffer();
 	}
@@ -2052,6 +2056,9 @@ static void prvInitialiseTCBVariables( tskTCB *pxTCB, const signed char * const 
 		pxTCB->ulRunTimeCounter = 0UL;
 	}
 	#endif
+
+	//ky
+	_REENT_INIT_PTR((&pxTCB->reent));
 
 	#if ( portUSING_MPU_WRAPPERS == 1 )
 	{
